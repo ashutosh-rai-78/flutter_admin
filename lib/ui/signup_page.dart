@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/responsive/desktop_scaffold.dart';
 import 'package:flutter_admin/widgets/text_elevated_button.dart';
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
 
                       },
-                      child: Text("Login",))),
+                      child: Text("SignIn",))),
             ],
           ),
         ),
