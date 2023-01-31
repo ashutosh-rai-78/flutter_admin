@@ -1,33 +1,55 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/ui/signup_page.dart';
-import 'package:flutter_admin/widgets/text_elevated_button.dart';
+import 'package:flutter_admin/common/widgets/text_elevated_button.dart';
+import 'package:flutter_admin/ui/pages/login_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
+
+  TextEditingController? nameController;
+  TextEditingController? emailController;
+  TextEditingController? passwordController;
+  TextEditingController? confirmPasswordController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Login Page"),
-        centerTitle: true,
-      ),
+      appBar: AppBar(),
       body: Center(
         child: Form(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Container(
+            child: SizedBox(
               width: 550,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  /*-------------------------------- Name -------------------------------------------*/
+
+                  Text(
+                    "Name".toUpperCase(),
+                    style: Theme.of(context).textTheme.overline,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  TextFormField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      hintText: "Enter your name",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   /*-------------------------------- Email -------------------------------------------*/
                   Text(
                     "Email".toUpperCase(),
@@ -37,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 5,
                   ),
                   TextFormField(
-                    // controller: emailController,
+                    controller: emailController,
                     decoration: const InputDecoration(
                       hintText: "Email",
                     ),
@@ -54,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 5,
                   ),
                   TextFormField(
-                    // controller: passwordController,
+                    controller: passwordController,
                     decoration: const InputDecoration(
                       hintText: "Password",
                     ),
@@ -62,34 +84,41 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  /*-------------------------------- Forget Button -------------------------------------------*/
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Theme.of(context).colorScheme.primary),
+                  /*-------------------------------- Confirm Password -------------------------------------------*/
+                  Text(
+                    "Confirm Password".toUpperCase(),
+                    style: Theme.of(context).textTheme.overline,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  TextFormField(
+                    controller: confirmPasswordController,
+                    decoration: const InputDecoration(
+                      hintText: "Confirm Password",
                     ),
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+
                   /*-------------------------------- Login Button -------------------------------------------*/
 
                   Center(
                       child: TextElevatedButton(
                           onPressed: () {},
                           child: const Text(
-                            "Login",
+                            "Sign up",
                           ))),
                   /*-------------------------------- Create Account -------------------------------------------*/
 
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-
                   Align(
                     child: RichText(
                       text: TextSpan(
-                        text: "Don't have an account? ",
+                        text: "Already have an account?",
                         style: Theme.of(context)
                             .textTheme
                             .overline
@@ -97,11 +126,12 @@ class _LoginPageState extends State<LoginPage> {
                         // defining default style is optional
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Sign up',
+                              text: 'Sign in',
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context){
-                                    return SignUpPage();
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return const LoginPage();
                                   }));
                                 },
                               style: TextStyle(
@@ -118,6 +148,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-    ;
   }
 }
