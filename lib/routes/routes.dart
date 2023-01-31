@@ -4,11 +4,26 @@ import 'package:flutter_admin/ui/pages/home_page.dart';
 import 'package:flutter_admin/ui/pages/login_page.dart';
 import 'package:flutter_admin/ui/pages/signup_page.dart';
 
+enum Routes {
+  login,
+  home;
+
+  String get path {
+    switch(this){
+      case Routes.login:
+        return "/login";
+      case Routes.home:
+        return "/";
+    }
+  }
+}
+
 class RouteName {
   static const String login = "login_screen";
   static const String signup = "sign_up_screen";
   static const String home = "home_screen";
 }
+/*
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -26,3 +41,4 @@ class Routes {
     }
   }
 }
+*/

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_admin/di/initilize_di.dart';
 import 'package:flutter_admin/routes/routes.dart';
+import 'package:flutter_admin/routes/routes_map.dart';
 import 'package:flutter_admin/theme/theme.dart';
 
-void main() {
+void main() async{
+  await initializeDependencyInjection();
   runApp(const MyApp());
 }
 
@@ -12,12 +15,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Admin App',
       theme: getTheme(Brightness.light),
       darkTheme: getTheme(Brightness.dark),
-      initialRoute: RouteName.login,
-      onGenerateRoute: Routes.generateRoute,
+      routerConfig: router,
     );
   }
 }
