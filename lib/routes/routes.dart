@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/ui/pages/home_page.dart';
-import 'package:flutter_admin/ui/pages/login_page.dart';
+import 'package:flutter_admin/ui/login/pages/login_page.dart';
 import 'package:flutter_admin/ui/pages/signup_page.dart';
 
 enum Routes {

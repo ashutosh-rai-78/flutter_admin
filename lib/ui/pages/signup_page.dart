@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/common/widgets/text_elevated_button.dart';
-import 'package:flutter_admin/ui/pages/login_page.dart';
+import 'package:flutter_admin/ui/login/pages/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
