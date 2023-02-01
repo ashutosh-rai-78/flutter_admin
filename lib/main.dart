@@ -3,8 +3,10 @@ import 'package:flutter_admin/di/initilize_di.dart';
 import 'package:flutter_admin/routes/routes.dart';
 import 'package:flutter_admin/routes/routes_map.dart';
 import 'package:flutter_admin/theme/theme.dart';
+import 'package:hive_flutter/adapters.dart';
 
 void main() async{
+  await Hive.initFlutter();
   await initializeDependencyInjection();
   runApp(const MyApp());
 }

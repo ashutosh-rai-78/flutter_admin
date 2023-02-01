@@ -11,7 +11,6 @@ import 'package:view_model_x/view_model_x.dart';
 import '../../../common/common.dart';
 import '../../../common/widgets/auth_text_field.dart';
 import '../../../common/widgets/text_elevated_button.dart';
-import '../../pages/signup_page.dart';
 
 class LoginPage extends StatelessWidget with RouteWrapper {
   const LoginPage({Key? key}) : super(key: key);
@@ -104,32 +103,7 @@ class LoginPage extends StatelessWidget with RouteWrapper {
                     const SizedBox(
                       height: 15,
                     ),
-                    Align(
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Don't have an account? ",
-                          style: Theme.of(context)
-                              .textTheme
-                              .overline
-                              ?.copyWith(fontSize: 14),
-                          // defining default style is optional
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: 'Sign up',
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const SignUpPage();
-                                    }));
-                                  },
-                                style: TextStyle(
-                                    color: Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ),
-                    )
+                    
                   ],
                 ),
               ),

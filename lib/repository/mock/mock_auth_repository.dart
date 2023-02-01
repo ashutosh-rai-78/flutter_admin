@@ -11,5 +11,5 @@ class MockAuthRepository extends AuthRepository{
     _authService.login("asasasalkhjlskdfjlksdjf;ali");
     // return Future.error("error");
   }
-
+  
 }

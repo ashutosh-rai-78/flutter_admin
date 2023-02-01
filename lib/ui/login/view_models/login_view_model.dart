@@ -11,19 +11,20 @@ class LoginViewModel extends ViewModel{
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  final MutableSharedFlow<String> mutableSharedFlow = MutableSharedFlow();
+  final MutableSharedFlow<String> _mutableSharedFlow = MutableSharedFlow();
 
-  SharedFlow<String> get sharedFlow => mutableSharedFlow;
+  SharedFlow<String> get sharedFlow => _mutableSharedFlow;
 
 
   Future<void> login() async {
     try {
     await _authRepository.login(emailController.text, passwordController.text);
-    mutableSharedFlow.emit("ok");
+    _mutableSharedFlow.emit("ok");
     }catch(e){
-      mutableSharedFlow.emit(e.toString());
+      _mutableSharedFlow.emit(e.toString());
     }
   }
+  
 
 
   @override

@@ -15,6 +15,8 @@ class MainAuthService extends AuthService{
   @override
   String? get token => _box.get("token");
 
+
+
   @override
   Future<void> logOut() async{
     await _box.clear();

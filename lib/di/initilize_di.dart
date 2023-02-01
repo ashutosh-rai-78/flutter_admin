@@ -8,6 +8,8 @@ import 'package:hive/hive.dart';
 
 Future<void> initializeDependencyInjection() async {
   final Box<String> box = await Hive.openBox("auth");
+  
+
   locator.registerSingleton<AuthService>(MainAuthService(box));
 
 // Repository
