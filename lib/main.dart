@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/di/initilize_di.dart';
-import 'package:flutter_admin/routes/routes.dart';
 import 'package:flutter_admin/routes/routes_map.dart';
 import 'package:flutter_admin/theme/theme.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Admin App',
       theme: getTheme(Brightness.light),
       darkTheme: getTheme(Brightness.dark),

@@ -7,7 +7,7 @@ class MockAuthRepository extends AuthRepository{
   MockAuthRepository(this._authService);
   @override
   Future<void> login(String email, String password) async{
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 2));
     _authService.login("asasasalkhjlskdfjlksdjf;ali");
     // return Future.error("error");
   }
