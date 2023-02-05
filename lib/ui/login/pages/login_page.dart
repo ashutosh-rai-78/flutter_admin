@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget with RouteWrapper {
     return SharedFlowListener(
       listener: (BuildContext context, value) { 
         if(value == "ok"){
-          GoRouter.of(context).pushReplacementNamed(Routes.home.name);
+          GoRouter.of(context).pushReplacementNamed(Routes.products.name);
         }else{
           Utils.toastMessage(value);
         }

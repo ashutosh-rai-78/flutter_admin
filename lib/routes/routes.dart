@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_admin/ui/home/pages/home_page.dart';
-import 'package:flutter_admin/ui/login/pages/login_page.dart';
-import 'package:flutter_admin/ui/pages/signup_page.dart';
 
 enum Routes {
   login,
-  home;
+  home,
+  products;
 
   String get path {
     switch(this){
@@ -14,31 +10,10 @@ enum Routes {
         return "/login";
       case Routes.home:
         return "/";
+        case Routes.products : 
+        return "/products";
     }
   }
 }
 
-class RouteName {
-  static const String login = "login_screen";
-  static const String signup = "sign_up_screen";
-  static const String home = "home_screen";
-}
-/*
 
-class Routes {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case RouteName.login:
-        return MaterialPageRoute(builder: (BuildContext c) => LoginPage());
-      case RouteName.home :
-        return MaterialPageRoute(builder: (BuildContext c) => HomePage());
-      case RouteName.signup :
-        return MaterialPageRoute(builder: (BuildContext c) => SignUpPage());
-      default:
-        return MaterialPageRoute(
-            builder: (BuildContext context) =>
-                Scaffold(body: Center(child: Text('No Routes Found'))));
-    }
-  }
-}
-*/
