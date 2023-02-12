@@ -1,8 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/common/utils.dart';
 import 'package:flutter_admin/di/locator.dart';
-import 'package:flutter_admin/network/base/network_call.dart';
 import 'package:flutter_admin/routes/routes.dart';
 import 'package:flutter_admin/ui/login/view_models/login_view_model.dart';
 import 'package:go_router/go_router.dart';
@@ -24,7 +21,7 @@ class LoginPage extends StatelessWidget with RouteWrapper {
     return SharedFlowListener(
       listener: (BuildContext context, value) { 
         if(value == "ok"){
-          GoRouter.of(context).pushReplacementNamed(Routes.products.name);
+          GoRouter.of(context).pushReplacementNamed(Routes.home.name);
         }else{
           Utils.toastMessage(value);
         }

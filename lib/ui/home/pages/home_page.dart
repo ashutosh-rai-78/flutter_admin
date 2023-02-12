@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_admin/common/common.dart';
 import 'package:flutter_admin/di/locator.dart';
 import 'package:flutter_admin/routes/routes.dart';
+import 'package:flutter_admin/ui/Product_page/pages/products_page.dart';
 import 'package:flutter_admin/ui/home/view_models/home_view_model.dart';
+import 'package:flutter_admin/ui/home/widgets/bottom_navigation.dart';
+import 'package:flutter_admin/ui/home/widgets/custom_navigation_rail.dart';
 import 'package:go_router/go_router.dart';
 import 'package:view_model_x/view_model_x.dart';
 
@@ -17,39 +20,53 @@ class HomePage extends StatelessWidget with RouteWrapper {
 
   // ------------------------------- UI Design ---------------------
 
+  Widget screen(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        return Container(
+          color: Theme.of(context).colorScheme.background,
+          alignment: Alignment.center,
+          child: const Text('Page 1'),
+        );
+      case 1:
+        return Container(
+          color: Theme.of(context).colorScheme.background,
+          alignment: Alignment.center,
+          child: const Text('Page 2'),
+        );
+      case 2:
+        return ProductsPage().wrappedRoute(context);
+      case 3:
+        return Container(
+          color: Theme.of(context).colorScheme.background,
+          alignment: Alignment.center,
+          child: const Text('Page 3'),
+        );
+      default:
+        return const SizedBox();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    debugPrint("ghghjdg");
     var width = MediaQuery.of(context).size.width;
-    int currentPageIndex =
-        context.vm<HomeViewModel>().indexStateFlow.watch(context);
-    debugPrint("Current Page Index : $currentPageIndex ");
-
-    List<Widget> screens = [
-      Container(
-        color: Colors.red,
-        alignment: Alignment.center,
-        child: const Text('Page 1'),
-      ),
-      Container(
-        color: Colors.green,
-        alignment: Alignment.center,
-        child: const Text('Page 2'),
-      ),
-      Container(
-        color: Colors.blue,
-        alignment: Alignment.center,
-        child: const Text('Page 3'),
-      ),Container(
-        color: Colors.redAccent,
-        alignment: Alignment.center,
-        child: const Text('Page 4'),
-      ),
-    ];
+    /* int currentPageIndex =
+        context.vm<HomeViewModel>().indexStateFlow.watch(context); */
+    // debugPrint("Current Page Index : $currentPageIndex ");
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
         toolbarHeight: 50,
-        title: const Text("Home Page"),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(2.0),
+          child: Container(
+            color: Theme.of(context).colorScheme.tertiary,
+            height: 2,
+          ),
+        ),
+        title: const Text("Flutter Admin"),
         actions: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -63,70 +80,24 @@ class HomePage extends StatelessWidget with RouteWrapper {
                     context.pushReplacementNamed(Routes.login.name);
                   }).onError((error, stackTrace) {});
                 },
-                child: const Icon(Icons.logout,size: 20,)),
+                child: const Icon(
+                  Icons.logout,
+                  size: 20,
+                )),
           ),
         ],
       ),
-      bottomNavigationBar: width < 650 ? NavigationBar(
-        onDestinationSelected: (int index) {
-          context.vm<HomeViewModel>().changeIndex(index);
-        },
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.fact_check_sharp),
-            icon: Icon(Icons.fact_check_outlined),
-            label: 'Orders',
-          ),
-          NavigationDestination(
-                  selectedIcon: Icon(Icons.add_box_rounded),
-                  icon: Icon(Icons.add_box_outlined),
-            label: 'Add Products',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.person),
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ): null,
+      bottomNavigationBar: width < 650 ? const BottomNavigation() : null,
       body: Row(
         children: [
-          if(width >= 650)
-          NavigationRail(
-            extended: width >= 800 ? true:false,
-              onDestinationSelected: (value) {
-                context.vm<HomeViewModel>().changeIndex(value);
-              },
-              destinations: const [
-                NavigationRailDestination(
-                  selectedIcon: Icon(Icons.home),
-                  icon: Icon(Icons.home_outlined),
-                  label: Text('Home'),
-                  
-                ),
-                NavigationRailDestination(
-                  selectedIcon: Icon(Icons.fact_check_sharp),
-                  icon: Icon(Icons.fact_check_outlined),
-                  label: Text('Orders'),
-                ),
-                NavigationRailDestination(
-                  selectedIcon: Icon(Icons.add_box_rounded),
-                  icon: Icon(Icons.add_box_outlined),
-                  label: Text('Add Products'),
-                ),NavigationRailDestination(
-                  selectedIcon: Icon(Icons.person),
-                  icon: Icon(Icons.person_outline),
-                  label: Text('Profile'),
-                ),
-              ],
-              selectedIndex: currentPageIndex),
-          Expanded(child: screens[currentPageIndex]),
+          if (width >= 650) CustomNavigationRail(extended: width >= 800),
+          Expanded(
+              child: StateFlowBuilder(
+            builder: (context, currrentIndex) {
+              return screen(context, currrentIndex);
+            },
+            stateFlow: context.vm<HomeViewModel>().indexStateFlow,
+          )),
         ],
       ),
     );

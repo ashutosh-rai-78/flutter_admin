@@ -1,5 +1,5 @@
-import 'package:flutter_admin/entitys/product_model.dart';
+import 'package:flutter_admin/entitys/product_entity.dart';
 
-abstract class ProductRepository{
- Future<List<ProductModel>> featchProducts(int pageNo);
+abstract class ProductRepository {
+  Future<List<ProductModel>> featchProducts(int pageNo);
 }
