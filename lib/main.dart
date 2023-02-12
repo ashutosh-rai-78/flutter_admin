@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Admin App',
+      // themeMode: ThemeMode.light,
       theme: getTheme(Brightness.light, useMaterial3: true),
       darkTheme: getTheme(Brightness.dark, useMaterial3: true),
       routerConfig: router,

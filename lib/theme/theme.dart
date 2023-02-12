@@ -12,7 +12,7 @@ ColorScheme _seededTheme(Brightness mode) =>
         surface: mode == Brightness.dark ? const Color(0xFF14141f) : null,
         surfaceTint:
             mode == Brightness.dark ? Color.fromARGB(255, 45, 45, 85) : null,
-        tertiary: const Color(0xff1c1c2a),
+        outline: mode == Brightness.dark ? const Color(0xff1c1c2a) : null,
         // background: mode == Brightness.dark ? const Color(0xFF191E23) : null);
         background: mode == Brightness.dark ? const Color(0xFF14141f) : null);
 

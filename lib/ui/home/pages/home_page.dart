@@ -71,26 +71,34 @@ class HomePage extends StatelessWidget with RouteWrapper {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
             margin: const EdgeInsets.only(right: 10, top: 5),
-            child: OutlinedButton(
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(horizontal: 10))),
-                onPressed: () async {
-                  context.vm<HomeViewModel>().logout().then((value) {
-                    context.pushReplacementNamed(Routes.login.name);
-                  }).onError((error, stackTrace) {});
-                },
-                child: const Icon(
-                  Icons.logout,
-                  size: 20,
-                )),
+            child: PopupMenuButton<String>(
+              onSelected: (value) {
+                switch (value) {
+                  case 'Logout':
+                    context.vm<HomeViewModel>().logout().then((value) {
+                      context.pushReplacementNamed(Routes.login.name);
+                    }).onError((error, stackTrace) {});
+                    break;
+                  case 'Settings':
+                    break;
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return {'Logout', 'Settings'}.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              },
+            ),
           ),
         ],
       ),
       bottomNavigationBar: width < 650 ? const BottomNavigation() : null,
       body: Row(
         children: [
-          if (width >= 650) CustomNavigationRail(extended: width >= 800),
+          if (width >= 650) CustomNavigationRail(extended: width >= 900),
           Expanded(
               child: StateFlowBuilder(
             builder: (context, currrentIndex) {

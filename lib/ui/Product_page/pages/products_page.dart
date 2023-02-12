@@ -27,17 +27,23 @@ class ProductsPage extends StatelessWidget with RouteWrapper {
                 child: ListTile(
                   title: Text(product.title),
                   subtitle: Text(product.desc),
-                  leading: Text(product.imagUrl),
+                  leading: Image.asset(product.imagUrl),
                   trailing:
                       Text(" MRP: ${product.mrp} Price: ${product.price}"),
                 ),
               );
             }),
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 500,
-                childAspectRatio: 3,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10),
+            gridDelegate: MediaQuery.of(context).size.width > 780
+                ? SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 550,
+                    mainAxisExtent: 100,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10)
+                : SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisExtent: 100,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
           );
         },
         stateFlow: context.vm<ProductsViewModel>().stateFlow,
