@@ -47,6 +47,7 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.12
   sidebarx: ^0.14.0
+  dynamic_color: ^1.6.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

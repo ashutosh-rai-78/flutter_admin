@@ -34,12 +34,12 @@ class ProductsPage extends StatelessWidget with RouteWrapper {
               );
             }),
             gridDelegate: MediaQuery.of(context).size.width > 780
-                ? SliverGridDelegateWithMaxCrossAxisExtent(
+                ? const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 550,
                     mainAxisExtent: 100,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10)
-                : SliverGridDelegateWithFixedCrossAxisCount(
+                : const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     mainAxisExtent: 100,
                     crossAxisSpacing: 10,

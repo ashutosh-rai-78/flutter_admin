@@ -5,16 +5,17 @@ const _commonPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 15);
 final _commonBorderRadius = BorderRadius.circular(7);
 
 ColorScheme _seededTheme(Brightness mode) =>
-    ColorScheme.fromSeed(seedColor: Colors.blue, brightness: mode).copyWith(
-        primary: mode == Brightness.light
-            ? Colors.blue.shade700
-            : Colors.blue.shade300,
-        surface: mode == Brightness.dark ? const Color(0xFF14141f) : null,
-        surfaceTint:
-            mode == Brightness.dark ? Color.fromARGB(255, 45, 45, 85) : null,
-        outline: mode == Brightness.dark ? const Color(0xff1c1c2a) : null,
-        // background: mode == Brightness.dark ? const Color(0xFF191E23) : null);
-        background: mode == Brightness.dark ? const Color(0xFF14141f) : null);
+    ColorScheme.fromSeed(seedColor: const Color(0xff1c1c2a), brightness: mode)
+        .copyWith(
+            primary: const Color(0xff7f7d8c),
+            primaryContainer:
+                mode == Brightness.light ? null : const Color(0xff1e1e2c),
+            surfaceTint:
+                mode == Brightness.dark ? const Color(0xff1e1e2c) : null,
+            outline: mode == Brightness.dark ? const Color(0xff1c1c2a) : null,
+            background: mode == Brightness.dark
+                ? const Color(0xFF14141f)
+                : const Color(0xfff0eefc));
 
 extension MoreColors on ColorScheme {
   Color get textPrimary => onSurface;
@@ -33,6 +34,8 @@ ThemeData getTheme(Brightness mode, {bool useMaterial3 = true}) {
       scrolledUnderElevation: 0,
     ),
     textTheme: GoogleFonts.kumbhSansTextTheme(TextTheme(
+        labelMedium: TextStyle(fontSize: 12, color: seededTheme.textPrimary),
+        caption: TextStyle(fontSize: 12, color: seededTheme.textSecondary),
         overline: TextStyle(fontSize: 12, color: seededTheme.textSecondary),
         button: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
     inputDecorationTheme: InputDecorationTheme(

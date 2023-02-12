@@ -8,7 +8,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      surfaceTintColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       onDestinationSelected: (int index) {
         context.vm<HomeViewModel>().changeIndex(index);
       },

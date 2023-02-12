@@ -40,7 +40,7 @@ class CustomNavigationRail extends StatelessWidget {
                 context.vm<HomeViewModel>().indexStateFlow.watch(context)),
         Container(
           width: 2,
-          color: Theme.of(context).colorScheme.tertiary,
+          color: Theme.of(context).colorScheme.outline,
         )
       ],
     );

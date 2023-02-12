@@ -62,36 +62,40 @@ class HomePage extends StatelessWidget with RouteWrapper {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(2.0),
           child: Container(
-            color: Theme.of(context).colorScheme.tertiary,
+            color: Theme.of(context).colorScheme.outline,
             height: 2,
           ),
         ),
         title: const Text("Flutter Admin"),
         actions: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            margin: const EdgeInsets.only(right: 10, top: 5),
-            child: PopupMenuButton<String>(
-              onSelected: (value) {
-                switch (value) {
-                  case 'Logout':
-                    context.vm<HomeViewModel>().logout().then((value) {
-                      context.pushReplacementNamed(Routes.login.name);
-                    }).onError((error, stackTrace) {});
-                    break;
-                  case 'Settings':
-                    break;
-                }
-              },
-              itemBuilder: (BuildContext context) {
-                return {'Logout', 'Settings'}.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              },
-            ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Container(
+                padding: const EdgeInsets.all(5),
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                child: const Icon(Icons.person)),
+          ),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.keyboard_arrow_down_outlined),
+            onSelected: (value) {
+              switch (value) {
+                case 'Logout':
+                  context.vm<HomeViewModel>().logout().then((value) {
+                    context.pushReplacementNamed(Routes.login.name);
+                  }).onError((error, stackTrace) {});
+                  break;
+                case 'Settings':
+                  break;
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return {'Logout', 'Settings'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
           ),
         ],
       ),

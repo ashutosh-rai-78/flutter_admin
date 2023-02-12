@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/di/locator.dart';
 import 'package:flutter_admin/routes/routes.dart';
+import 'package:flutter_admin/theme/theme.dart';
 import 'package:flutter_admin/ui/login/view_models/login_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:view_model_x/view_model_x.dart';
@@ -19,13 +20,13 @@ class LoginPage extends StatelessWidget with RouteWrapper {
   Widget build(BuildContext context) {
     final viewModel = context.vm<LoginViewModel>();
     return SharedFlowListener(
-      listener: (BuildContext context, value) { 
-        if(value == "ok"){
+      listener: (BuildContext context, value) {
+        if (value == "ok") {
           GoRouter.of(context).pushReplacementNamed(Routes.home.name);
-        }else{
+        } else {
           Utils.toastMessage(value);
         }
-       },
+      },
       sharedFlow: viewModel.sharedFlow,
       child: Scaffold(
         appBar: AppBar(
@@ -45,7 +46,7 @@ class LoginPage extends StatelessWidget with RouteWrapper {
                     /*-------------------------------- Email -------------------------------------------*/
                     Text(
                       "Email".toUpperCase(),
-                      style: Theme.of(context).textTheme.overline,
+                      style: Theme.of(context).textTheme.labelMedium,
                     ),
                     const SizedBox(
                       height: 5,
@@ -81,26 +82,28 @@ class LoginPage extends StatelessWidget with RouteWrapper {
                         "Forgot Password?",
                         style: TextStyle(
                             fontSize: 15,
-                            color: Theme.of(context).colorScheme.primary),
+                            color: Theme.of(context).colorScheme.textSecondary),
                       ),
                     ),
                     /*-------------------------------- Login Button -------------------------------------------*/
-    
+
                     Center(
                         child: TextElevatedButton(
                             onPressed: () {
                               viewModel.login();
-                             
                             },
-                            child: const Text(
+                            child: Text(
                               "Login",
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .textSecondary),
                             ))),
                     /*-------------------------------- Create Account -------------------------------------------*/
-    
+
                     const SizedBox(
                       height: 15,
                     ),
-                    
                   ],
                 ),
               ),
