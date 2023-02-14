@@ -2,7 +2,9 @@
 # Make sure that the github pages is already set to Github Actions, otherwise the workflow will fail.
 #
 # Author: Shubham Gupta
-# - GitHub: https://github.com/shubham-gupta-16/
+# GitHub: https://github.com/shubham-gupta-16/
+# Created On: 5 Aug, 2022
+# Updated On: 12 Jan, 2023
 
 name: CI
 on:
@@ -30,6 +32,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+# If you want to change the directory to run commands
     defaults:
       run:
         working-directory: ./example
@@ -41,11 +44,14 @@ jobs:
         with:
           flutter-version: '3.7.1' 
           channel: 'stable'
+#          flutter-version: '3.3.10'  // uncomment this line if you want to use a specific version of Flutter
       - run: flutter pub get
       - run: flutter build web --base-href /${{ github.event.repository.name }}/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
+          name: web-build
+#          path: sub-folder/build/web // if working-directory is changed
           path: example/build/web
       - name: Deploy to GitHub Pages
         id: deployment
