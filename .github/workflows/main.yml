@@ -33,9 +33,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 # If you want to change the directory to run commands
-    defaults:
-      run:
-        working-directory: ./example
+#    defaults:
+#      run:
+#        working-directory: ./sub-folder
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -52,7 +52,7 @@ jobs:
         with:
           name: web-build
 #          path: sub-folder/build/web // if working-directory is changed
-          path: example/build/web
+          path: build/web
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
