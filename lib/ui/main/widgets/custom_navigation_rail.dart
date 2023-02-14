@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_admin/ui/home/view_models/home_view_model.dart';
 import 'package:view_model_x/view_model_x.dart';
 
+import '../view_models/main_view_model.dart';
+
 class CustomNavigationRail extends StatelessWidget {
   const CustomNavigationRail({super.key, required this.extended});
   final bool extended;
@@ -12,7 +14,7 @@ class CustomNavigationRail extends StatelessWidget {
         NavigationRail(
             extended: extended,
             onDestinationSelected: (value) {
-              context.vm<HomeViewModel>().changeIndex(value);
+              context.vm<MainViewModel>().changeIndex(value);
             },
             destinations: const [
               NavigationRailDestination(
@@ -37,7 +39,7 @@ class CustomNavigationRail extends StatelessWidget {
               ),
             ],
             selectedIndex:
-                context.vm<HomeViewModel>().indexStateFlow.watch(context)),
+                context.vm<MainViewModel>().indexStateFlow.watch(context)),
         Container(
           width: 2,
           color: Theme.of(context).colorScheme.outline,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/ui/home/view_models/home_view_model.dart';
+import 'package:flutter_admin/ui/main/view_models/main_view_model.dart';
 import 'package:view_model_x/view_model_x.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -10,9 +11,9 @@ class BottomNavigation extends StatelessWidget {
     return NavigationBar(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       onDestinationSelected: (int index) {
-        context.vm<HomeViewModel>().changeIndex(index);
+        context.vm<MainViewModel>().changeIndex(index);
       },
-      selectedIndex: context.vm<HomeViewModel>().indexStateFlow.watch(context),
+      selectedIndex: context.vm<MainViewModel>().indexStateFlow.watch(context),
       destinations: const <Widget>[
         NavigationDestination(
           selectedIcon: Icon(Icons.home),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/common/wrapped_route.dart';
 import 'package:flutter_admin/di/locator.dart';
-import 'package:flutter_admin/ui/Product_page/view_models/products_view_model.dart';
+import 'package:flutter_admin/ui/Product/view_models/products_view_model.dart';
 import 'package:view_model_x/view_model_x.dart';
 
 class ProductsPage extends StatelessWidget with RouteWrapper {
