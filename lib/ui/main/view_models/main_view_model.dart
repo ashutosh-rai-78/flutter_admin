@@ -1,12 +1,20 @@
 import 'package:flutter_admin/services/auth_service.dart';
 import 'package:view_model_x/view_model_x.dart';
 
-class HomeViewModel extends ViewModel {
-  // final AuthService _authService;
-  // HomeViewModel(this._authService);
+class MainViewModel extends ViewModel {
+  final AuthService _authService;
+  MainViewModel(this._authService);
+
+  final _indexStateFlow = MutableStateFlow<int>(0);
+
+  StateFlow<int> get indexStateFlow => _indexStateFlow;
+
+  void changeIndex(int index) {
+    _indexStateFlow.value = index;
+  }
 
   Future<void> logout() async {
-    // await _authService.logOut();
+    await _authService.logOut();
   }
 
   @override
