@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ResponsiveScaffold extends StatelessWidget {
   final Widget toolbartitle;
-  final Widget Function(BuildContext? context, bool extended) navigationRail;
+  final Widget Function(BuildContext context, bool extended) navigationRail;
   final Widget bottomNavigationBar;
   final List<Widget> actions;
   final double mobileMaxWidth;
@@ -48,7 +48,15 @@ class ResponsiveScaffold extends StatelessWidget {
       body: Row(
         children: [
           if (width >= mobileMaxWidth!)
-            navigationRail(context, width >= tabletMaxWidth),
+            Row(
+              children: [
+                navigationRail(context, width >= tabletMaxWidth),
+                Container(
+                  width: 2,
+                  color: Theme.of(context).colorScheme.outline,
+                )
+              ],
+            ),
           Expanded(child: body),
         ],
       ),

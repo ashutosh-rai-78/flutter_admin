@@ -23,6 +23,29 @@ class DashboardPage extends StatelessWidget with RouteWrapper {
 
   // ------------------------------- UI Design ---------------------
 
+  static const destinations = [
+    NavigationRailDestination(
+      selectedIcon: Icon(Icons.home),
+      icon: Icon(Icons.home_outlined),
+      label: Text('Home'),
+    ),
+    NavigationRailDestination(
+      selectedIcon: Icon(Icons.fact_check_sharp),
+      icon: Icon(Icons.fact_check_outlined),
+      label: Text('Orders'),
+    ),
+    NavigationRailDestination(
+      selectedIcon: Icon(Icons.add_box_rounded),
+      icon: Icon(Icons.add_box_outlined),
+      label: Text('Add Products'),
+    ),
+    NavigationRailDestination(
+      selectedIcon: Icon(Icons.person),
+      icon: Icon(Icons.person_outline),
+      label: Text('Profile'),
+    ),
+  ];
+
   Widget screen(BuildContext context, int index) {
     switch (index) {
       case 0:
@@ -52,8 +75,14 @@ class DashboardPage extends StatelessWidget with RouteWrapper {
 
     return ResponsiveScaffold(
       toolbartitle: const Text("Admin App"),
-      navigationRail: (context, extended) =>
-          CustomNavigationRail(extended: extended),
+      navigationRail: (context, extended) => CustomNavigationRail(
+        onDestinationSelected: (value) {
+          context.vm<DBViewModel>().changeIndex(value);
+        },
+        destinations: destinations,
+        selectedIndex: context.vm<DBViewModel>().indexStateFlow.watch(context),
+        extended: extended,
+      ),
       actions: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),

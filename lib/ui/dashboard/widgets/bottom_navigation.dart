@@ -9,7 +9,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       onDestinationSelected: (int index) {
         context.vm<DBViewModel>().changeIndex(index);
       },
