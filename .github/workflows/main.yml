@@ -46,7 +46,7 @@ jobs:
           channel: 'stable'
 #          flutter-version: '3.3.10'  // uncomment this line if you want to use a specific version of Flutter
       - run: flutter pub get
-      - run: flutter build web --base-href /${{ github.event.repository.name }}/
+      - run: flutter build web --base-href /${{ github.event.rep  ository.name }}/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
