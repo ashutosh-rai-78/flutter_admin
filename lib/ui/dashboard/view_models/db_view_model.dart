@@ -1,9 +1,9 @@
 import 'package:flutter_admin/services/auth_service.dart';
 import 'package:view_model_x/view_model_x.dart';
 
-class MainViewModel extends ViewModel {
+class DBViewModel extends ViewModel {
   final AuthService _authService;
-  MainViewModel(this._authService);
+  DBViewModel(this._authService);
 
   final _indexStateFlow = MutableStateFlow<int>(0);
 

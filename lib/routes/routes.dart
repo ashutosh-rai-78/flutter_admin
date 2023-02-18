@@ -1,14 +1,14 @@
 enum Routes {
   login,
   home,
-  main,
+  dashboard,
   products;
 
   String get path {
     switch (this) {
       case Routes.login:
         return "/login";
-      case Routes.main:
+      case Routes.dashboard:
         return "/";
       case Routes.home:
         return "/home";

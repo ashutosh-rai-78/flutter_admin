@@ -4,22 +4,22 @@ import 'package:flutter_admin/di/locator.dart';
 import 'package:flutter_admin/routes/routes.dart';
 import 'package:flutter_admin/ui/Product/pages/products_page.dart';
 import 'package:flutter_admin/ui/home/pages/home_page.dart';
-import 'package:flutter_admin/ui/main/view_models/main_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:view_model_x/view_model_x.dart';
 
+import '../view_models/db_view_model.dart';
 import '../widgets/bottom_navigation.dart';
 import '../widgets/custom_navigation_rail.dart';
 import '../widgets/responsive_scaffold.dart';
 
-class MainPage extends StatelessWidget with RouteWrapper {
-  const MainPage({Key? key}) : super(key: key);
+class DashboardPage extends StatelessWidget with RouteWrapper {
+  const DashboardPage({Key? key}) : super(key: key);
 
   // ------------------------------- Setting Home View Model to View Model Provider ---------------------
 
   @override
   Widget wrappedRoute(BuildContext context) => ViewModelProvider(
-      create: (context) => MainViewModel(locator()), child: this);
+      create: (context) => DBViewModel(locator()), child: this);
 
   // ------------------------------- UI Design ---------------------
 
@@ -51,7 +51,7 @@ class MainPage extends StatelessWidget with RouteWrapper {
     debugPrint("ghghjdg");
 
     return ResponsiveScaffold(
-      appBartitle: const Text("Admin App"),
+      toolbartitle: const Text("Admin App"),
       navigationRail: (context, extended) =>
           CustomNavigationRail(extended: extended),
       actions: [
@@ -67,7 +67,7 @@ class MainPage extends StatelessWidget with RouteWrapper {
           onSelected: (value) {
             switch (value) {
               case 'Logout':
-                context.vm<MainViewModel>().logout().then((value) {
+                context.vm<DBViewModel>().logout().then((value) {
                   context.pushReplacementNamed(Routes.login.name);
                 }).onError((error, stackTrace) {});
                 break;
@@ -88,7 +88,7 @@ class MainPage extends StatelessWidget with RouteWrapper {
       bottomNavigationBar: const BottomNavigation(),
       body: StateFlowBuilder(
         builder: (context, currrentIndex) => screen(context, currrentIndex),
-        stateFlow: context.vm<MainViewModel>().indexStateFlow,
+        stateFlow: context.vm<DBViewModel>().indexStateFlow,
       ),
     );
   }
